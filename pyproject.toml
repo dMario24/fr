@@ -1,7 +1,7 @@
 [project]
 name = "fr"
-version = "0.1.0"
-description = "Default template for PDM package"
+version = "0.2.1"
+description = "from sklearn.linear_model import LinearRegression 2 FastAPI"
 authors = [
     {name = "dMario24", email = "data.mario24@gmail.com"},
 ]

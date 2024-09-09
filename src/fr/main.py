@@ -1,21 +1,13 @@
 from typing import Union
 from fastapi import FastAPI
 import pickle
-import os
-
+from fr.mmanager import get_model_path
 
 app = FastAPI()
 
 @app.get("/")
 def read_root():
     return {"Hello": "fr"}
-
-def get_model_path():
-    my_path = __file__
-    dir_name = os.path.dirname(my_path)
-    model_path = os.path.join(dir_name, f"model.pkl")
-    return model_path
-
 
 
 def run_prediction(length: float):
