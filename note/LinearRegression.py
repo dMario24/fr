@@ -64,7 +64,63 @@ plt.show()
 # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
 from sklearn.linear_model import LinearRegression
 lr = LinearRegression()
-lr.fit()
+lr.fit(train_input, train_target) # 훈련끝
+
+# -------------
+# 예측
+print(lr.predict([[50]]))
+# 1241.83860323
+print(lr.predict([[100]]))
+# 3192.69585141
+print(knr.predict([[50]]))
+# 1033.3333333333333
+
+# --------------
+# 선형 그래프 그리기
+# 무게 = A * ( 길이) + B
+A = lr.coef_ # 계수
+B = lr.intercept_ # 절편, 독립항
+
+plt.scatter(train_input, train_target)
+plt.plot([10, 50], [10 * A + B, 50 * A + B])
+plt.scatter(50, 1241.83860323, marker='^')
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
+
+lr.predict([[50]]) == A * 50 + B
+lr.predict([[15]]) 
+# -123.7614705
+
+# -----------------------------
+# 다항회귀 모델의 그래프 그려보기
+train_poly = np.column_stack((train_input ** 2, train_input))
+train_poly = np.column_stack((train_input ** 2, train_input))
+lr = LinearRegression()
+lr.fit(train_poly, train_target)
+lr.predict([[50 ** 2, 50]])
+
+# 다항식 : weight = (A * (length)^2)   +  (B * length)  +   ( C )
+print(lr.coef_, lr.intercept_)
+A = lr.coef_[0]
+B = lr.coef_[1]
+C = lr.intercept_
+
+# 다항식 차트로 그려보기
+points = np.arange(0, 51)
+plt.scatter(train_input, train_target)
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.plot(points, (A * points**2) + (B * points) + C)
+# print(lr.predict([[50**2, 50]])) -> 해당 값을 * 로 마킹해서 차트에 추가하기
+plt.scatter(50, 1574, marker='*')
+plt.show()
+
+
+
+
+
+
 
 
 
